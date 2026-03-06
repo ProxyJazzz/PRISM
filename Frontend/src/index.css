@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-prism-bg: #050A15;
+  --color-prism-accent: #1E90FF;
+  --color-prism-highlight: #00C2FF;
+  --color-prism-card: rgba(255, 255, 255, 0.02);
+  --color-prism-border: rgba(255, 255, 255, 0.08);
+  --color-prism-glow: rgba(30, 144, 255, 0.2);
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-prism-bg text-white font-sans antialiased;
+    background-attachment: fixed;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(30, 144, 255, 0.03) 0%, transparent 100%),
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 32px 32px, 32px 32px;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight font-bold;
+  }
+
+  p {
+    @apply leading-[1.6] text-white/60;
+  }
+}
+
+@layer utilities {
+  .prism-gradient {
+    background: linear-gradient(135deg, #050A15 0%, #0A1428 100%);
+  }
+  
+  .glass-card {
+    @apply bg-prism-card border border-prism-border backdrop-blur-sm rounded-sm;
+  }
+  
+  .technical-panel {
+    @apply border border-white/10 bg-white/[0.02] rounded-none relative overflow-hidden;
+  }
+
+  .technical-panel::before {
+    content: '';
+    @apply absolute top-0 left-0 w-1 h-full bg-prism-accent opacity-50;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 15px rgba(30, 144, 255, 0.4);
+  }
+
+  .system-node {
+    @apply border border-white/10 bg-white/[0.03] p-4 rounded-none relative transition-all duration-300;
+  }
+
+  .system-node:hover {
+    @apply border-prism-accent/50 bg-prism-accent/5;
+  }
+
+  .pipeline-connector {
+    @apply h-px bg-gradient-to-r from-prism-accent/50 to-transparent flex-grow mx-4;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
